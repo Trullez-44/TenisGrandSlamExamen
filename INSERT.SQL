@@ -51,7 +51,7 @@ INSERT INTO nacionalidades VALUES
 INSERT INTO encuentros VALUES
 (1,'1979-05-29',5,1,3,'MARCADOR FINAL: 6-3 4-6/7-5 6-0',1,2,'Cuartos de final'),
 (2,'1980-05-29',9,1,2,'MARCADOR FINAL: 7-4 6-3/7-5 5-6',3,5,'Final'),
-(3,'1985-07-14',10,1,4,'MARCADOR FINAL: 7-0 6-2/7-5 6-1',4,2,'Final'),
+(3,'1985-07-14',,1,4,'MARCADOR FINAL: 7-0 6-2/7-5 6-1',4,2,'Final'),
 (4,'1987-12-04',8,1,1,'MARCADOR FINAL: 6-5 75/4-6 6-3',3,5,'Final'),
 (5,'1979-06-01',5,1,3,'MARCADOR FINAL: 6-3 4-6/7-5 6-0',3,1,'Final'),
 (6,'1981-08-12',4,1,4,'MARCADOR FINAL: 6-3 4-6/7-5 6-0',3,5,'FInal'),
@@ -87,24 +87,6 @@ INSERT INTO premios VALUES
 (6,3,45000,'Borg perdedor Melbourne finales 1981, $45,000 como premio',6),
 (7,3,35000,'Borg perdedor Paris semifinales 1982, $35,000 como premio',7),
 (8,3,1800000,'Borg GANADOR Wimbledon finales 1992, $1,800,000 como premio',9);
-INSERT INTO torneo_arbitro VALUES
-(1,),
-
-
-
-
-
-
-
-
-
-SELECT t.torneo_id,e.encuentro_id, a.arbitro_id,a.primer_nombre, p.nombre, t.ubicacion
-FROM encuentros e
-JOIN arbitros a ON e.arbitro_id = a.arbitro_id
-JOIN torneos t ON e.torneo_id = t.torneo_id
-JOIN paises p ON t.pais_id = p.pais_id
-WHERE t.torneo_id = 4;
-
 
 
 
