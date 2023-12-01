@@ -100,6 +100,7 @@ Ejemplo del texto:
 
     ```sql
       SELECT *
+      FROM ENCUENTROS 
     ```
 
 5. Connors gano Gerulaitis en Roland Garros en 1979 en cuartos de final en individuales masculinos por 6-3 4-6/7-5 6-0.
@@ -111,19 +112,36 @@ Ejemplo del texto:
 6. El señor Wilkinson arbitro ese partido.
 
     ```sql
-      # Consulta Aqui
+      select a.primer_nombre AS ARBITRO, e.*
+      from encuentros e
+      JOIN arbitros a ON e.arbitro_id = a.arbitro_id
+      where e.arbitro_id = 1 OR a.primer_nombre = 'Wilkinson';
     ```
 
 7. Alemania ha ganado dos veces las individuales masculinas de Wimbledon. Borg ha ganado 2.000.000 de dólares a lo largo de su participación en el Grand Slam.
+(La consulta si bota el resultado, pero inserte datos de màs  )
 
     ```sql
-      # Consulta Aqui
+      SELECT e.*, j.*, p.nombre
+      FROM encuentro_jugadores ej
+      JOIN encuentros e ON ej.encuentro_id = e.encuentro_id
+      JOIN jugadores j ON ej.jugador_id = j.jugador_id
+      JOIN nacionalidades n ON j.jugador_id = n.jugador_id
+      JOIN paises p ON n.pais_id = p.pais_id
+      WHERE p.nombre = 'Alemania' AND e.posicionamiento = 'Final'
+      AND e.modalidad_id = 1 AND (e.torneo_id = 9 or e.torneo_id = 10);
+
     ```
 
 8. El ganador de Roland Garros de 1987 ganó 20.000 dólares.
 
     ```sql
-      # Consulta Aqui
+      select j.jugador_id, j.primer_apellido,p.descripcion, e.resultados, p.precio_dolares
+      from encuentros e
+      JOIN jugadores j ON e.ganador_id = j.jugador_id
+      JOIN premios p ON p.encuentro_id = e.encuentro_id
+      WHERE e.posicionamiento = 'Final' AND YEAR(e.fecha) = 1987; 
+      
     ```
 
 9. Noah ha jugado cuatro veces en dobles mixtos con Mandlikova.
